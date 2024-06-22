@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/ChessGame.h"
+#include "Core/ChessGame.h"
 
 #include <omp.h> // Parallelism
 

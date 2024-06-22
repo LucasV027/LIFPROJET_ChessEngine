@@ -1,4 +1,4 @@
-#include "ChessGame.h"
+#include "Core/ChessGame.h"
 
 ChessGame::ChessGame() : ChessGame("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w") {}
 

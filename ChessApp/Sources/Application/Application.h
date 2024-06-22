@@ -6,10 +6,10 @@
 #include <iostream>
 
 // Only for the demo
-#include "../Utils/Demo.h"
+#include "Utils/Demo.h"
 /////////////////
 
-#include "../IA/ChessIA.h"
+#include "IA/ChessIA.h"
 #include "Renderer.h"
 
 enum class Events

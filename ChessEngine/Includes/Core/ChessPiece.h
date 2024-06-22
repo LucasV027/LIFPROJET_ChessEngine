@@ -4,7 +4,7 @@
 #include <memory>
 #include <iostream>
 
-#include "../Utils/Utils.h"
+#include "Utils/Utils.h"
 
 class ChessGame;
 

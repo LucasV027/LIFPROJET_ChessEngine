@@ -1,4 +1,4 @@
-#include "ChessIA.h"
+#include "IA/ChessIA.h"
 
 namespace ChessIA
 {

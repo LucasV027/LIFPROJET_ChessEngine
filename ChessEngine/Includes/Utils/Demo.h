@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Player.h"
+#include "Core/Player.h"
 #include <string>
 
 namespace Demo

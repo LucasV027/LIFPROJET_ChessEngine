@@ -5,9 +5,9 @@
 
 #include <vector>
 
-#include "../Utils/Utils.h"
-#include "../Core/ChessPiece.h"
-#include "../Core/ChessGame.h"
+#include "Utils/Utils.h"
+#include "Core/ChessPiece.h"
+#include "Core/ChessGame.h"
 #include "Box.h"
 
 class Renderer

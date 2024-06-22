@@ -2,7 +2,7 @@
 
 #include "ChessPiece.h"
 #include "Player.h"
-#include "../Utils/Utils.h"
+#include "Utils/Utils.h"
 
 #include <algorithm>
 #include <vector>

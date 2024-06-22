@@ -1,5 +1,5 @@
-#include "Utils.h"
-#include "../Core/ChessPiece.h"
+#include "Utils/Utils.h"
+#include "Core/ChessPiece.h"
 
 PieceType charToPieceType(char c)
 {

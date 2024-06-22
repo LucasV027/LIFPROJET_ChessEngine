@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../Utils/Utils.h"
+#include "Utils/Utils.h"
 #include "ChessPiece.h"
 
 class Player

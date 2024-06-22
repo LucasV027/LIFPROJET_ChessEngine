@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Core/Player.h"
 
 Player::Player(std::string _playerName, unsigned int _playerIndex, Direction _playerDirection, Color _playerColor) : playerName(_playerName),
                                                                                                                      playerIndex(_playerIndex),

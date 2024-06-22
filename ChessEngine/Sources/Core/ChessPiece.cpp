@@ -1,5 +1,5 @@
-#include "ChessPiece.h"
-#include "ChessGame.h"
+#include "Core/ChessPiece.h"
+#include "Core/ChessGame.h"
 
 ChessPiece::ChessPiece() : caseType(PieceType::NONE), x(0), y(0), playerIndex(0), hasMovedOnce(false) {}
 ChessPiece::ChessPiece(PieceType _type, int initialX, int initialY, int playerIndex) : caseType(_type), x(initialX), y(initialY), playerIndex(playerIndex), hasMovedOnce(false) {}
