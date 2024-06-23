@@ -14,5 +14,5 @@ int main(int argc, char *argv[])
     Application App(800, 800);
     App.run();
 
-	return 0;
+    return 0;
 }

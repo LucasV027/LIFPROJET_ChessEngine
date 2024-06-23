@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-#include <SDL_image.h>
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 
 #include <vector>
 
@@ -9,7 +9,6 @@
 #include "Core/ChessPiece.h"
 #include "Core/ChessGame.h"
 #include "Box.h"
-
 
 class Renderer
 {
@@ -47,10 +46,10 @@ private:
 
     int spriteSizeY;
     int spriteSizeX;
-    SDL_Rect pawnSprite;
-    SDL_Rect rookSprite;
-    SDL_Rect knightSprite;
-    SDL_Rect bishopSprite;
-    SDL_Rect queenSprite;
-    SDL_Rect kingSprite;
+    SDL_FRect pawnSprite;
+    SDL_FRect rookSprite;
+    SDL_FRect knightSprite;
+    SDL_FRect bishopSprite;
+    SDL_FRect queenSprite;
+    SDL_FRect kingSprite;
 };

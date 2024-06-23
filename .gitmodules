@@ -1,0 +1,6 @@
+[submodule "ChessApp/Extern/SDL"]
+	path = ChessApp/Extern/SDL
+	url = https://github.com/libsdl-org/SDL
+[submodule "ChessApp/Extern/SDL_image"]
+	path = ChessApp/Extern/SDL_image
+	url = https://github.com/libsdl-org/SDL_image

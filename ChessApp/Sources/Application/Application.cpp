@@ -15,7 +15,7 @@ Application::Application(int screenWidth, int screenHeight)
         return;
     }
 
-    mWindow = SDL_CreateWindow("Chess Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    mWindow = SDL_CreateWindow("Chess Engine", screenWidth, screenHeight, SDL_WINDOW_RESIZABLE);
     if (!mWindow)
     {
         printf("mWindow could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -72,24 +72,23 @@ void Application::handleEvents()
     {
         switch (mEvent.type)
         {
-        case SDL_QUIT:
+        case SDL_EVENT_QUIT:
             isRunning = false;
             break;
 
-        // WINDOW EVENTS //
-        case SDL_WINDOWEVENT:
-            if (mEvent.window.event == SDL_WINDOWEVENT_RESIZED)
-            {
-                mRenderer->resize(mEvent.window.data1, mEvent.window.data2, *mGame);
-            }
+            // WINDOW EVENTS //
+        case SDL_EVENT_WINDOW_RESIZED:
+            mRenderer->resize(mEvent.window.data1, mEvent.window.data2, *mGame);
             SDL_GetWindowSize(this->mWindow, &screenWidth, &screenHeight);
             break;
 
         // KEYBOARD EVENTS //
-        case SDL_KEYDOWN:
-            switch (mEvent.key.keysym.sym)
+        case SDL_EVENT_KEY_DOWN:
+            switch (mEvent.key.key)
             {
             case SDLK_q:
+            case SDLK_Q:
+            case SDLK_ESCAPE:
                 isRunning = false;
                 break;
 
@@ -171,7 +170,7 @@ void Application::handleEvents()
             }
 
         // MOUSE EVENTS //
-        case SDL_MOUSEBUTTONDOWN:
+        case SDL_EVENT_MOUSE_BUTTON_DOWN:
             if (mEvent.button.button == SDL_BUTTON_LEFT) // LEFT CLICK
             {
                 int mouseX = mEvent.button.x;

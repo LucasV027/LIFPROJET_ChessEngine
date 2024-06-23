@@ -2,7 +2,7 @@
 
 Renderer::Renderer(SDL_Window *window) : chessBoardBox(0.1f, 0.1f, 0.1f, 0.1f, 800, 800)
 {
-    mRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    mRenderer = SDL_CreateRenderer(window, NULL);
     if (!mRenderer)
         printf("mRenderer could not be created! SDL_Error: %s\n", SDL_GetError());
 
@@ -18,17 +18,17 @@ Renderer::Renderer(SDL_Window *window) : chessBoardBox(0.1f, 0.1f, 0.1f, 0.1f, 8
     if (!circleOnPieceTexture)
         printf("The renderer could not load Assets/Textures/CircleOnPiece.png ! SDL_Error: %s\n", SDL_GetError());
 
-    int chessPiecesTextureWidth, chessPiecesTextureHeight;
-    SDL_QueryTexture(chessPiecesTexture, NULL, NULL, &chessPiecesTextureWidth, &chessPiecesTextureHeight);
+    float chessPiecesTextureWidth, chessPiecesTextureHeight;
+    SDL_GetTextureSize(chessPiecesTexture, &chessPiecesTextureWidth, &chessPiecesTextureHeight);
     spriteSizeY = chessPiecesTextureHeight / 2;
     spriteSizeX = chessPiecesTextureWidth / 6;
 
-    pawnSprite = SDL_Rect{0, 0, spriteSizeX, spriteSizeY};
-    rookSprite = SDL_Rect{spriteSizeX * 3, 0, spriteSizeX, spriteSizeY};
-    knightSprite = SDL_Rect{spriteSizeX, 0, spriteSizeX, spriteSizeY};
-    bishopSprite = SDL_Rect{spriteSizeX * 2, 0, spriteSizeX, spriteSizeY};
-    queenSprite = SDL_Rect{spriteSizeX * 4, 0, spriteSizeX, spriteSizeY};
-    kingSprite = SDL_Rect{spriteSizeX * 5, 0, spriteSizeX, spriteSizeY};
+    pawnSprite = SDL_FRect{0, 0, (float)spriteSizeX, (float)spriteSizeY};
+    rookSprite = SDL_FRect{(float)spriteSizeX * 3, 0, (float)spriteSizeX, (float)spriteSizeY};
+    knightSprite = SDL_FRect{(float)spriteSizeX, 0, (float)spriteSizeX, (float)spriteSizeY};
+    bishopSprite = SDL_FRect{(float)spriteSizeX * 2, 0, (float)spriteSizeX, (float)spriteSizeY};
+    queenSprite = SDL_FRect{(float)spriteSizeX * 4, 0, (float)spriteSizeX, (float)spriteSizeY};
+    kingSprite = SDL_FRect{(float)spriteSizeX * 5, 0, (float)spriteSizeX, (float)spriteSizeY};
 }
 
 Renderer::~Renderer()
@@ -69,7 +69,7 @@ void Renderer::display(const ChessGame &game)
 
 void Renderer::drawBackground(const ChessGame &game)
 {
-    SDL_Rect rect;
+    SDL_FRect rect;
     rect.x = chessBoardBox.getXOffset();
     rect.y = chessBoardBox.getYOffset();
     rect.w = squareSizeX * game.getWidth();
@@ -80,7 +80,7 @@ void Renderer::drawBackground(const ChessGame &game)
 
 void Renderer::drawGrid(const ChessGame &game)
 {
-    SDL_Rect rect;
+    SDL_FRect rect;
 
     SDL_SetRenderDrawColor(mRenderer, 235, 236, 208, 25);
     for (size_t y = 0; y < game.getHeight(); y++)
@@ -105,7 +105,7 @@ void Renderer::drawPossibleMoves(const ChessGame &game)
     if (pieceToDrawPossibleMoves)
     {
         // Draw the colored square under the piece that we selected
-        SDL_Rect rect;
+        SDL_FRect rect;
         rect.x = chessBoardBox.getXOffset() + (pieceToDrawPossibleMoves.x * squareSizeX);
         rect.y = chessBoardBox.getYOffset() + (pieceToDrawPossibleMoves.y * squareSizeY);
         rect.w = chessBoardBox.getWidth() / game.getWidth();
@@ -118,14 +118,14 @@ void Renderer::drawPossibleMoves(const ChessGame &game)
         pieceToDrawPossibleMoves.returnValidMoves(game, movesForAPieces);
         for (const Move &move : movesForAPieces)
         {
-            SDL_Rect rect;
+            SDL_FRect rect;
             if (game.chessBoard[move.to.y][move.to.x]) // There is a piece one the "to" of the move so we take the circle png
             {
                 rect.x = chessBoardBox.getXOffset() + move.to.x * (chessBoardBox.getWidth() / game.getWidth());
                 rect.y = chessBoardBox.getYOffset() + move.to.y * (chessBoardBox.getHeight() / game.getHeight());
                 rect.w = squareSizeX;
                 rect.h = squareSizeY;
-                SDL_RenderCopy(mRenderer, circleOnPieceTexture, NULL, &rect);
+                SDL_RenderTexture(mRenderer, circleOnPieceTexture, NULL, &rect);
             }
             else // The is no pieces so we draw the transparent circle
             {
@@ -133,7 +133,7 @@ void Renderer::drawPossibleMoves(const ChessGame &game)
                 rect.y = chessBoardBox.getYOffset() + move.to.y * (chessBoardBox.getHeight() / game.getHeight()) + (squareSizeY / 2) - (squareSizeY / (2 * 2.5));
                 rect.w = squareSizeX / 2.5;
                 rect.h = squareSizeY / 2.5;
-                SDL_RenderCopy(mRenderer, circleTexture, NULL, &rect);
+                SDL_RenderTexture(mRenderer, circleTexture, NULL, &rect);
             }
         }
     }
@@ -141,7 +141,7 @@ void Renderer::drawPossibleMoves(const ChessGame &game)
 
 void Renderer::drawPieces(const ChessGame &game)
 {
-    SDL_Rect rect;
+    SDL_FRect rect;
 
     for (const auto &pieces : game.chessBoard)
     {
@@ -154,7 +154,7 @@ void Renderer::drawPieces(const ChessGame &game)
                 rect.w = chessBoardBox.getWidth() / game.getWidth();
                 rect.h = chessBoardBox.getHeight() / game.getWidth();
 
-                SDL_Rect sprite;
+                SDL_FRect sprite;
 
                 switch (piece.caseType)
                 {
@@ -191,12 +191,12 @@ void Renderer::drawPieces(const ChessGame &game)
 
                     if (pieceColor == Vec3Int(Color::White))
                     {
-                        sprite.y = spriteSizeY;
+                        sprite.y = (float)spriteSizeY;
                     }
 
                     if ((pieceColor != Vec3Int(Color::Black)) && (pieceColor != Vec3Int(Color::White)))
                     {
-                        sprite.y = spriteSizeY;
+                        sprite.y = (float)spriteSizeY;
                         SDL_SetTextureColorMod(chessPiecesTexture, pieceColor.r, pieceColor.g, pieceColor.b);
                     }
                 }
@@ -205,7 +205,7 @@ void Renderer::drawPieces(const ChessGame &game)
                     SDL_SetTextureColorMod(chessPiecesTexture, 35, 35, 0);
                 }
 
-                SDL_RenderCopy(mRenderer, chessPiecesTexture, &sprite, &rect);
+                SDL_RenderTexture(mRenderer, chessPiecesTexture, &sprite, &rect);
             }
         }
     }
@@ -213,7 +213,7 @@ void Renderer::drawPieces(const ChessGame &game)
 
 void Renderer::drawColorToPlay(const ChessGame &game)
 {
-    SDL_Rect rect;
+    SDL_FRect rect;
     rect.x = chessBoardBox.getXOffset() + chessBoardBox.getWidth() + 10;
     rect.y = chessBoardBox.getYOffset() - 10;
     rect.w = 30;

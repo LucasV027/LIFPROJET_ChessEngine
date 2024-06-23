@@ -2,7 +2,7 @@
 
 ![Language](https://img.shields.io/badge/Language-C%2B%2B-0052cf)
 ![Static Badge](https://img.shields.io/badge/Librairies-SDL2%20SDL2__image-brightgreen)
-![Size](https://img.shields.io/badge/Size-10%20Mo-f12222)
+![Size](https://img.shields.io/badge/Size-400%20Ko-f12222)
 
 <br>
 <p align="center">
@@ -24,33 +24,7 @@ You have the option to engage in matches on a visual interface, either against f
 
 - C++
 
-- SDL2, SDL2_image set in your global path on your computer :
-
-  On linux you can simply do (depending of your distribution)
-
-  ```
-  sudo apt-get install libsdl2-dev
-  ```
-
-  Manual installation (and other platforms) : [SDL2](https://wiki.libsdl.org/SDL2/Installation)
-  [SDL2_Image](https://wiki.libsdl.org/SDL2/Installation)
-
-#### Compile
-
-```
-cd lifprojet_chess/
-make
-```
-
-Ignore the warning and then run
-`./bin/main`.
-
-#### Additional information
-
-The project heavily rely on the console for displaying informations and inputs so you should keep it open and visible during the execution.
-
-The project uses .h et .cpp to work but the makefile wont see changes in the .h, so if you're changing the .h
-you might want to do `make clean` and after re-do a `make`.
+- Works only on Linux (For now)
 
 ## How to play
 
@@ -71,8 +45,7 @@ you might want to do `make clean` and after re-do a `make`.
 
 - Language : c++
 - Graphical interface : SDL2
-- Compilation : Makefile
-- Developped on Linux
+- Build : CMake
 
 ### Classes :
 
@@ -84,40 +57,3 @@ you might want to do `make clean` and after re-do a `make`.
 - Player (A generic class with the color, direction, index of a player )
 - ChessGame (The class containing all info about the current game (The chessBoard, the turn index, and all the players))
 - Utils (Vec2Int, Vec3Int, Color...)
-
-### Files
-
-- SRC/ : .h & .cpp
-- BIN/ : .o & executable
-- EXTERN/ : All the extern librairies
-- RES/ : Ressources (.png fonts ...)
-- DATA/ : Save / load games
-- Makefile
-
-## Results
-
-## Links | Sources
-
-#### Academy links
-
-[LIFPROJET](http://cazabetremy.fr/wiki/doku.php?id=start)
-
-[LIFPROJET Perso](https://perso.liris.cnrs.fr/samir.aknine/L3/)
-
-#### Research links
-
-[SDL Course](https://lazyfoo.net/tutorials/SDL/)
-
-[Chess English terms](https://ecole.apprendre-les-echecs.com/vocabulaire-echecs-anglais/)
-
-[Researchs](https://www.youtube.com/watch?v=l-hh51ncgDI)
-
-[Perft results](https://www.chessprogramming.org/Perft_Results)
-
-#### Textures sources
-
-[Pieces textures](https://commons.wikimedia.org/wiki/Category:PNG_chess_pieces/Standard_transparent)
-
-## Credits
-
-- [**Lucas VIOLENT**]() : creator of the project.
