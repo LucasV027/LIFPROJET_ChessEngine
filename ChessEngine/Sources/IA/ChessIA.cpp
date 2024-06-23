@@ -151,7 +151,7 @@ namespace ChessIA
         return moves[bestMoveIndex];
     }
 
-    Move bestMoveMT(ChessGame root, int depth)
+    Move bestMoveMT(ChessGame root, int depth, bool verbose)
     {
         int playerMaximizingIndex = root.turnIndex;
 

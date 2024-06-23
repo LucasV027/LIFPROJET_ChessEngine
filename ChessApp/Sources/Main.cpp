@@ -13,4 +13,6 @@ int main(int argc, char *argv[])
     std::cout << "(Press h for help)\n";
     Application App(800, 800);
     App.run();
+
+	return 0;
 }

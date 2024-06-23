@@ -6,15 +6,15 @@ Renderer::Renderer(SDL_Window *window) : chessBoardBox(0.1f, 0.1f, 0.1f, 0.1f, 8
     if (!mRenderer)
         printf("mRenderer could not be created! SDL_Error: %s\n", SDL_GetError());
 
-    chessPiecesTexture = IMG_LoadTexture(mRenderer, "../Assets/Textures/chess.png");
+    chessPiecesTexture = IMG_LoadTexture(mRenderer, ASSETS_PATH "/Textures/chess.png");
     if (!chessPiecesTexture)
         printf("The renderer could not load Assets/Textures/chess.png ! SDL_Error: %s\n", SDL_GetError());
 
-    circleTexture = IMG_LoadTexture(mRenderer, "../Assets/Textures/Circle.png");
+    circleTexture = IMG_LoadTexture(mRenderer, ASSETS_PATH "/Textures/Circle.png");
     if (!circleTexture)
         printf("The renderer could not load Assets/Textures/Circle.png ! SDL_Error: %s\n", SDL_GetError());
 
-    circleOnPieceTexture = IMG_LoadTexture(mRenderer, "../Assets/Textures/CircleOnPiece.png");
+    circleOnPieceTexture = IMG_LoadTexture(mRenderer, ASSETS_PATH "/Textures/CircleOnPiece.png");
     if (!circleOnPieceTexture)
         printf("The renderer could not load Assets/Textures/CircleOnPiece.png ! SDL_Error: %s\n", SDL_GetError());
 

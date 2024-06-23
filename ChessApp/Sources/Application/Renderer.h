@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <SDL_image.h>
 
 #include <vector>
 
@@ -9,6 +9,7 @@
 #include "Core/ChessPiece.h"
 #include "Core/ChessGame.h"
 #include "Box.h"
+
 
 class Renderer
 {

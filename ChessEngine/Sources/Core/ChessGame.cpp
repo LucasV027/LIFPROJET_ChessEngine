@@ -168,7 +168,7 @@ std::string ChessGame::toFENString() const
     return ret;
 }
 
-bool ChessGame::isItAITurns() const { players[turnIndex].playerName == "IA"; }
+bool ChessGame::isItAITurns() const { return players[turnIndex].playerName == "IA"; }
 
 const std::vector<Move> ChessGame::getAllPossibleMoves() const
 {

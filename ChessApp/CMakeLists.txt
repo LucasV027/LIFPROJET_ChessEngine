@@ -14,6 +14,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/libsdl-org/SDL
     GIT_TAG release-2.30.4
 )
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libraries")
 FetchContent_MakeAvailable(sdl2)
 
 message(STATUS "Fetching SDL2_image")
@@ -22,7 +23,11 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/libsdl-org/SDL_image
     GIT_TAG release-2.8.2
 )
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libraries")
 FetchContent_MakeAvailable(SDL2_image)
 
+set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/Assets)
+add_definitions(-DASSETS_PATH="${ASSETS_DIR}")
 
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 target_link_libraries(ChessApp PRIVATE ChessEngine SDL2::SDL2 SDL2::SDL2main SDL2_image)

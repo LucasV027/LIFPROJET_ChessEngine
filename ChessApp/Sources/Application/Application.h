@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <SDL_image.h>
 #include <chrono>
 #include <iostream>
 
@@ -69,8 +69,8 @@ private:
     int depth;
 
     // The 2 chronos for the verbose mode
-    std::chrono::_V2::high_resolution_clock::time_point verboseTimeCounterStart;
-    std::chrono::_V2::high_resolution_clock::time_point verboseTimeCounterEnd;
+    std::chrono::high_resolution_clock::time_point verboseTimeCounterStart;
+    std::chrono::high_resolution_clock::time_point verboseTimeCounterEnd;
 
     // For human to make a move
 
